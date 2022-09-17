@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .relative{
+            position: relative;
+        }
+        .absolute{
+            position: absolute;
+        }
+        .block{
+            box-sizing: border-box;
+            background-color: blue;
+            border: 2px solid  white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container relative">
+
+    </div>
+    <script>
+        window.onload=function(){
+            let worldMapstr = "_,_,_,_\n"+
+                             "p,_,_,_\n"+
+                             "_,_,_,_\n"+
+                             "_,_,_,_"
+            let constants={
+                blockWidth:100,
+                blockHeight:100,
+                containerObj:document.querySelector(".container")
+
+            }
+
+            function genWorldMap(stringMap){    ///gen array
+                let map=[]
+                let rowStrings=stringMap.split("\n")
+                for(let row of rowStrings){
+                    map.push(row.split(","))
+                }
+                return map
+            }
+
+            const drawMap=(mapArr)=>{                     //creating elements
+                  let html=""
+                  let [topOffset,leftoffsset] = [0,0]
+                  for(let row of mapArr){
+                    leftoffset=0
+                       for(let col of row){
+                        let blockObj=document.createElement("div")
+                        console.log(blockObj)
+                        blockObj.classList.add("block")
+                        blockObj.classList.add("absolute")
+                        blockObj.style.width=constants.blockWidth+"px"
+                        blockObj.style.height=constants.blockHeight+"px"
+                        blockObj.style.top=topOffset+"px"
+                        blockObj.style.left=leftoffset+"px"
+                        leftoffset+=constants.blockWidth
+                        constants.containerObj.appendChild(blockObj)
+
+                       }
+                       topOffset+=constants.blockHeight
+                  }
+                  //constants.containerObj.innerHTML=html
+                  
+            }
+            let worldMap=genWorldMap(worldMapstr)
+            drawMap(worldMap)
+
+            console.log(first[0][0])
+        }
+
+    </script>
+</body>
+</html>
