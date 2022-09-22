@@ -1,1 +1,1 @@
-# Image sliding
+# Board-game (Rat eating cheese which is controled by  arrow key's)
